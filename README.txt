@@ -1,0 +1,1 @@
+This is the fifth project in Treehouse's Full Stack JavaScript Tech Degree program. The program uses AJAX to access the Random User Generator's API.

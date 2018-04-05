@@ -1,5 +1,6 @@
 //an array to hold employees
 let employees = [];
+let empDiv = $('#empList');
 
 //a class to store individual employees
 function Employee (icon, name, username, cell, email, location, dob) {
@@ -10,6 +11,28 @@ function Employee (icon, name, username, cell, email, location, dob) {
   this.email = email;
   this.location = location;
   this.dob = dob;
+}
+
+function buildList(employees) {
+ $.each(employees, function(i, employee) {
+    let div = document.createElement('div');
+    $(div).addClass('employee');
+    $(div).addClass('container');
+    let img = document.createElement('img');
+    img.src = employee.icon.large;
+    let name = document.createElement('h3');
+    $(name).addClass('name');
+    name.textContent = `${employee.name.first} ${employee.name.last}`;
+    let email = document.createElement('p');
+    email.textContent = employee.email;
+    let location = document.createElement('p');
+    location.textContent = employee.location.city;
+    div.appendChild(img);
+    div.appendChild(name);
+    div.appendChild(email);
+    div.appendChild(location);
+    empDiv.append(div);
+  });//end each
 }
 
 //retreive all employees
@@ -27,37 +50,43 @@ $.ajax({
           employee.email,
           employee.location,
           employee.dob
-        );
+        );//end object
         //store the objects in an array
-        employees.push(newEmp);
-
+        employees.push(newEmp);        
       });
-    }
+
+      buildList(employees);
+      $('.employee').on('click', function (e) {
+        let imgKey = $(this).find('img').attr('src');
+
+        let clickedEmp = employees.find(x => x.icon.large === imgKey);
+
+        console.log(clickedEmp.username);
+      });
+    }//end success function
   });
 
-function buildList(employees) {
-  console.log(employees);
-  for (let i = 0; i < employees.length; i++){
+
+
+  //buildList(employees)
+
+  $.each(employees, function(i, employee) {
     console.log(employees[i]);
-  }
-
-  //   $.each($employees, function(i, employee) {
-//     console.log(employee);
-//     // let div = document.createElement('div');
-//     // $(div).addClass('employee');
-//     // let img = document.createElement('img');
-//     // img.src = employee.picture.large;
-//     // let name = document.createElement('h3');
-//     // $(name).addClass('name');
-//     // name.textContent = `${employee.name.first} ${employee.name.last}`;
-//     // div.appendChild(img)
-//     //   .appendChild(name);
-//   });//end each
-}
-
-  buildList(employees)
-
-  
+    //empDiv.html(`<div>${$(this).name.first}</div>`);    
+    // console.log(employee);
+    //     let div = document.createElement('div');
+    //     $(div).addClass('employee');
+    //     let img = document.createElement('img');
+    //     img.src = employee.picture.large;
+    //     $(img).addClass('icon');
+    //     let name = document.createElement('h3');
+    //     $(name).addClass('name');
+    //     name.textContent = `${employee.name.first} ${employee.name.last}`;
+    //     div.appendChild(img)
+    //       .appendChild(name);
+    //     $(empDiv).append(div);
+    //     console.log(div);
+      });//end each
 
 //load basic info
 

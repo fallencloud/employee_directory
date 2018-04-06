@@ -9,6 +9,11 @@
     
 }
 
+.material-icons {
+    align-self: flex-end;
+    padding-right: 5px;
+}
+
 .emp-info {
     display: flex;
     flex-direction: column;

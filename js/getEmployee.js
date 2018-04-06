@@ -72,9 +72,12 @@ $.ajax({
 function showModal(clickedEmp) {
   let div = document.createElement('div');
   $(div).addClass('modal');
-
+  let closeIcon = document.createElement('i');
+  $(closeIcon).addClass('material-icons');
   let infoDiv = document.createElement('div');
   $(infoDiv).addClass('emp-info');
+  
+  closeIcon.textContent = 'close';
   let img = document.createElement('img');
   $(img).addClass('modal-icon');
   img.src = clickedEmp.icon.large;
@@ -100,6 +103,7 @@ function showModal(clickedEmp) {
   let dobDay = dobDate.slice(8, 10);
   dob.textContent = `Birthday: ${dobMonth}/${dobDay}/${dobYear}`;
 
+  $(closeIcon).appendTo(infoDiv);
   $(img).appendTo(infoDiv);
   $(h3).appendTo(infoDiv);
   $(p).appendTo(infoDiv);
@@ -112,7 +116,7 @@ function showModal(clickedEmp) {
   $(dob).appendTo(contactDiv);
   $(div).appendTo('body');
 
-  $('.modal').on('click', function() {
-    $(this).hide();
+  $('i').on('click', function() {
+    $('.modal').hide();
   })
 }//end class show modal

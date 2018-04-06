@@ -92,7 +92,7 @@ function showModal(clickedEmp) {
   phone.textContent = clickedEmp.cell;
   let address = document.createElement('p');
   $(address).addClass('location');
-  address.textContent = `${clickedEmp.location.street}, ${clickedEmp.location.state}, ${clickedEmp.location.postcode}`;
+  address.textContent = `${clickedEmp.location.street}, ${clickedEmp.location.city}, ${clickedEmp.location.state}, ${clickedEmp.location.postcode}`;
   let dob = document.createElement('p');
   let dobDate = clickedEmp.dob.slice(0, 11);
   let dobMonth = dobDate.slice(5, 7);

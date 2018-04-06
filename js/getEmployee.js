@@ -17,9 +17,11 @@ function buildList(employees) {
  $.each(employees, function(i, employee) {
     let div = document.createElement('div');
     $(div).addClass('employee');
-    $(div).addClass('container');
     let img = document.createElement('img');
     img.src = employee.icon.large;
+    $(img).addClass('icon');
+    let detailDiv = document.createElement('div');
+    $(detailDiv).addClass('details');
     let name = document.createElement('h3');
     $(name).addClass('name');
     name.textContent = `${employee.name.first} ${employee.name.last}`;
@@ -28,9 +30,10 @@ function buildList(employees) {
     let location = document.createElement('p');
     location.textContent = employee.location.city;
     div.appendChild(img);
-    div.appendChild(name);
-    div.appendChild(email);
-    div.appendChild(location);
+    detailDiv.appendChild(name);
+    detailDiv.appendChild(email);
+    detailDiv.appendChild(location);
+    div.appendChild(detailDiv);
     empDiv.append(div);
   });//end each
 }

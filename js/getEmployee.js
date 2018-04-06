@@ -64,37 +64,55 @@ $.ajax({
 
         let clickedEmp = employees.find(x => x.icon.large === imgKey);
 
-        console.log(clickedEmp.username);
+        showModal(clickedEmp);
       });
     }//end success function
   });
 
+function showModal(clickedEmp) {
+  let div = document.createElement('div');
+  $(div).addClass('modal');
 
+  let infoDiv = document.createElement('div');
+  $(infoDiv).addClass('emp-info');
+  let img = document.createElement('img');
+  $(img).addClass('modal-icon');
+  img.src = clickedEmp.icon.large;
+  let h3 = document.createElement('h3');
+  h3.textContent = `${clickedEmp.name.first} ${clickedEmp.name.last}`;
+  let p = document.createElement('p');
+  p.textContent = clickedEmp.email;
+  let location = document.createElement('p');
+  $(location).addClass('location');
+  location.textContent = clickedEmp.location.city;
+  
+  let contactDiv = document.createElement('div');
+  $(contactDiv).addClass('contact-info');
+  let phone = document.createElement('p');
+  phone.textContent = clickedEmp.cell;
+  let address = document.createElement('p');
+  $(address).addClass('location');
+  address.textContent = `${clickedEmp.location.street}, ${clickedEmp.location.state}, ${clickedEmp.location.postcode}`;
+  let dob = document.createElement('p');
+  let dobDate = clickedEmp.dob.slice(0, 11);
+  let dobMonth = dobDate.slice(5, 7);
+  let dobYear = dobDate.slice(0, 4);
+  let dobDay = dobDate.slice(8, 10);
+  dob.textContent = `Birthday: ${dobMonth}/${dobDay}/${dobYear}`;
 
-  //buildList(employees)
+  $(img).appendTo(infoDiv);
+  $(h3).appendTo(infoDiv);
+  $(p).appendTo(infoDiv);
+  $(location).appendTo(infoDiv);
+  $(infoDiv).appendTo(div);
 
-  $.each(employees, function(i, employee) {
-    console.log(employees[i]);
-    //empDiv.html(`<div>${$(this).name.first}</div>`);    
-    // console.log(employee);
-    //     let div = document.createElement('div');
-    //     $(div).addClass('employee');
-    //     let img = document.createElement('img');
-    //     img.src = employee.picture.large;
-    //     $(img).addClass('icon');
-    //     let name = document.createElement('h3');
-    //     $(name).addClass('name');
-    //     name.textContent = `${employee.name.first} ${employee.name.last}`;
-    //     div.appendChild(img)
-    //       .appendChild(name);
-    //     $(empDiv).append(div);
-    //     console.log(div);
-      });//end each
+  $(phone).appendTo(contactDiv);
+  $(contactDiv).appendTo(infoDiv);
+  $(address).appendTo(contactDiv);
+  $(dob).appendTo(contactDiv);
+  $(div).appendTo('body');
 
-//load basic info
-
-
-
-
-
-// };//end build list
+  $('.modal').on('click', function() {
+    $(this).hide();
+  })
+}//end class show modal

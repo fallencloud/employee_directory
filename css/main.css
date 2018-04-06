@@ -26,8 +26,13 @@ h1 {
 
 h3 {
     margin-bottom: 0;
-    text-transform: capitalize;
     font-size: .80rem;
+}
+
+h3,
+.name,
+.location {    
+    text-transform: capitalize;
 }
 
 .container {

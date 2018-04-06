@@ -1,3 +1,6 @@
+/*************************
+Background
+**************************/
 .modal {
     position: absolute;
     top: 0;
@@ -9,6 +12,9 @@
     
 }
 
+/*************************
+Employee Information
+**************************/
 .material-icons {
     align-self: flex-end;
     padding-right: 5px;

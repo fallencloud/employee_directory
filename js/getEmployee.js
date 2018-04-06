@@ -13,6 +13,7 @@ function Employee (icon, name, username, cell, email, location, dob) {
   this.dob = dob;
 }
 
+//creates the list to display on the main web page
 function buildList(employees) {
  $.each(employees, function(i, employee) {
     let div = document.createElement('div');
@@ -60,7 +61,9 @@ $.ajax({
       });
 
       buildList(employees);
+      
       $('.employee').on('click', function (e) {
+        //use the image to locate the object in the array
         let imgKey = $(this).find('img').attr('src');
 
         let clickedEmp = employees.find(x => x.icon.large === imgKey);
@@ -70,6 +73,7 @@ $.ajax({
     }//end success function
   });
 
+//builds, shows, and hides the modal
 function showModal(clickedEmp) {
   let div = document.createElement('div');
   $(div).addClass('modal');
@@ -98,7 +102,9 @@ function showModal(clickedEmp) {
   $(address).addClass('location');
   address.textContent = `${clickedEmp.location.street}, ${clickedEmp.location.city}, ${clickedEmp.location.state}, ${clickedEmp.location.postcode}`;
   let dob = document.createElement('p');
+  //remove the time from the DOB
   let dobDate = clickedEmp.dob.slice(0, 11);
+  //split the remaining string into MM/DD/YYYY format
   let dobMonth = dobDate.slice(5, 7);
   let dobYear = dobDate.slice(0, 4);
   let dobDay = dobDate.slice(8, 10);

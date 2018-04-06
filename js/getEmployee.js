@@ -28,6 +28,7 @@ function buildList(employees) {
     let email = document.createElement('p');
     email.textContent = employee.email;
     let location = document.createElement('p');
+    $(location).addClass('location');
     location.textContent = employee.location.city;
     div.appendChild(img);
     detailDiv.appendChild(name);
